@@ -1,32 +1,19 @@
 import { useParams } from "react-router-dom"
 import { useFetch } from "../../hooks/useFetch"
 
+// styles
 import "./Recipe.css"
 
-function Recipe() {
-  const params = useParams()
-
-  const url = "http://localhost:3000/recipes/" + params.id.trim()
-
-  const { data: recipe, isPending, error } = useFetch(url)
+export default function Recipe() {
+  const { id } = useParams()
+  const url = "http://localhost:3000/recipes/" + id
+  const { error, isPending, data: recipe } = useFetch(url)
 
   return (
-    <div>
+    <div className="recipe">
       {error && <p className="error">{error}</p>}
-      {isPending && <p className="loading">Is Loading...</p>}
-
-      {recipe && <h2>{recipe.title}</h2>}
-
-      {recipe &&
-        recipe.ingredients &&
-        recipe.ingredients.map((item) => (
-          <ul key={item}>
-            <li>{item}</li>
-          </ul>
-        ))}
-        {recipe && recipe.method}
+      {isPending && <p className="loading">Loading...</p>}
+      {recipe && <h1>{recipe.title}</h1>}
     </div>
   )
 }
-
-export default Recipe
