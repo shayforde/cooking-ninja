@@ -9,19 +9,22 @@ import Recipe from "./pages/recipe/Recipe"
 
 // styles
 import "./App.css"
+import { ThemeProvider } from "./context/ThemeContext"
 
 function App() {
   return (
     <div className="App" id="app">
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/recipes/:id" element={<Recipe />} />
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/create" element={<Create />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/recipes/:id" element={<Recipe />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   )
 }
