@@ -10,6 +10,7 @@ import Recipe from "./pages/recipe/Recipe"
 // styles
 import "./App.css"
 import { ThemeProvider } from "./context/ThemeContext"
+import { ThemeSelector } from "./components/ThemeSelector"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <ThemeProvider>
         <BrowserRouter>
           <Navbar />
+          <ThemeSelector />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/create" element={<Create />} />
