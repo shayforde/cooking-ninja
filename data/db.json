@@ -47,6 +47,30 @@
       "method": "Put um all in a pot",
       "cookingTime": "38 minutes",
       "id": "Ltjf5aO"
+    },
+    {
+      "title": "Jumbalia",
+      "ingredients": [
+        "fish",
+        "whiskey",
+        "rice"
+      ],
+      "method": "drink whiskey and cook the rest",
+      "cookingTime": "34 minutes",
+      "id": "HET-JC2"
+    },
+    {
+      "title": "shepards pie",
+      "ingredients": [
+        "beef",
+        "potato",
+        "tomatoes",
+        "1 egg",
+        "carrots"
+      ],
+      "method": "IT’s semantics.  One man’s green lane is another express lane for green goods. Those green goods still have to declared as such  before departure, and linked to a lorry’s number plate.\nLorry drivers will not self declare by the lane they chose.\nThe EU had offered this months ago.",
+      "cookingTime": "20 minutes",
+      "id": "uzqnco1"
     }
   ]
 }
