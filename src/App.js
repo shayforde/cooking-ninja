@@ -9,13 +9,14 @@ import Recipe from "./pages/recipe/Recipe"
 
 // styles
 import "./App.css"
-import { ThemeProvider } from "./context/ThemeContext"
 import { ThemeSelector } from "./components/ThemeSelector"
+import { useTheme } from "./hooks/useTheme"
 
 function App() {
+  const { mode } = useTheme()
+
   return (
-    <div className="App" id="app">
-      <ThemeProvider>
+      <div className={`App ${mode}`} id="app">
         <BrowserRouter>
           <Navbar />
           <ThemeSelector />
@@ -26,8 +27,7 @@ function App() {
             <Route path="/recipes/:id" element={<Recipe />} />
           </Routes>
         </BrowserRouter>
-      </ThemeProvider>
-    </div>
+      </div>
   )
 }
 
