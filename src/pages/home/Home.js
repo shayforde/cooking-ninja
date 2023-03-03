@@ -45,6 +45,10 @@ export default function Home() {
           setIsPending(false)
         }
       })
+      .catch((err) => {
+        setError(err.message)
+        setIsPending(false)
+      })
   }, [])
 
   return (

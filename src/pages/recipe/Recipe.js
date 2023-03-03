@@ -31,6 +31,8 @@ export default function Recipe() {
           setRecipe({ ...snapshot.data() })
           setIsPending(false)
         }
+      }).catch(err => {
+        setError(err.message)
       })
   }, [id])
 
