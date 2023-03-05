@@ -52,3 +52,21 @@
 .recipe-list .card.dark div {
   color: #e4e4e4;
 }
+.delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  filter: invert(60%);
+  height: 1em;
+}
+.delete:hover {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  filter: invert(10%);
+  height: 1.5em;
+  background-color: red;
+  border-radius: 10px;
+}

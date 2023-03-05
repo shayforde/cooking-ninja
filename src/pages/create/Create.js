@@ -1,5 +1,5 @@
 import { projectFirestore } from "../../firebase/config"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef} from "react"
 import { useNavigate } from "react-router-dom"
 //import { useFetch } from "../../hooks/useFetch"
 
@@ -15,22 +15,12 @@ export default function Create() {
 
   // const [data, setData] = useState(null)
   //const [isPending, setIsPending] = useState(false)
-    const [error, setError] = useState(false)
+  const [error, setError] = useState(false)
 
   const ingredientInput = useRef(null)
 
   const navigate = useNavigate()
-
-  const postData = (item) => {
-    projectFirestore
-      .collection("recipes")
-      .add({ ...item })
-      .then(() => {
-        console.log(item, "ADDED")
-        navigate("/")
-      })
-  }
-
+  
   // useEffect(() => {
   //   if (data) {
   //     navigate("/")
@@ -39,12 +29,23 @@ export default function Create() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    postData({
+    const doc = {
       title,
       ingredients,
       method,
       cookingTime: cookingTime + " minutes",
-    })
+    }
+     projectFirestore
+       .collection("recipes")
+       .add(doc)
+       .then(() => {
+         console.log(doc, "ADDED")
+         navigate("/")
+       })
+       .catch((err) => {
+         setError(err.message)
+         //  setIsPending(false)
+       })
   }
 
   const handleAdd = (e) => {

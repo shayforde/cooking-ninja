@@ -9,7 +9,6 @@ import "./Recipe.css"
 
 export default function Recipe() {
   const { id } = useParams()
-
   const { mode, color } = useTheme()
 
   const [recipe, setRecipe] = useState(null)
@@ -23,18 +22,25 @@ export default function Recipe() {
       .collection("recipes")
       .doc(id)
       .get()
-      .then((snapshot) => {
-        if (snapshot.empty) {
-          setError("No recipes to load")
+      .then((doc) => {
+        if (doc.exists) {
+          setRecipe(doc.data())
           setIsPending(false)
         } else {
-          setRecipe({ ...snapshot.data() })
+          setError("No recipes to load")
           setIsPending(false)
         }
-      }).catch(err => {
+      })
+      .catch((err) => {
         setError(err.message)
       })
   }, [id])
+
+  const handleClick = () => {
+    projectFirestore.collection("recipes").doc(id).update({
+      title: "Something completely different",
+    })
+  }
 
   return (
     <div className={`recipe ${mode}`}>
@@ -43,7 +49,6 @@ export default function Recipe() {
       {recipe && (
         <>
           <h2 className="page-title" style={{ color: color }}>
-            {" "}
             {recipe.title}{" "}
           </h2>
           <p>Takes {recipe.cookingTime} to cook.</p>
@@ -53,6 +58,7 @@ export default function Recipe() {
             ))}
           </ul>
           <p className="method">{recipe.method}</p>
+          <button onClick={handleClick}>Update me</button>
         </>
       )}
     </div>
