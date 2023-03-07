@@ -18,11 +18,10 @@ export default function Recipe() {
   useEffect(() => {
     setIsPending(true)
 
-    projectFirestore
+    const unsub = projectFirestore
       .collection("recipes")
       .doc(id)
-      .get()
-      .then((doc) => {
+      .onSnapshot((doc) => {
         if (doc.exists) {
           setRecipe(doc.data())
           setIsPending(false)
@@ -31,14 +30,14 @@ export default function Recipe() {
           setIsPending(false)
         }
       })
-      .catch((err) => {
-        setError(err.message)
-      })
+      
+
+      return () => unsub()
   }, [id])
 
   const handleClick = () => {
     projectFirestore.collection("recipes").doc(id).update({
-      title: "Something completely different",
+      title: "Something completely different again",
     })
   }
 
